@@ -1,26 +1,29 @@
 package com.taxikaskad.response;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import lombok.Data;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 @Data
 @XmlRootElement(name = "response")
+@XmlType(propOrder = { "osmp_txn_id", "prvTxn", "sum", "result", "comment" })
 public class QiwiResponse {
 
-    @XmlElement(name = "ert")
     private Integer osmp_txn_id;
 
-    @XmlElement
     private Integer prvTxn;
 
-    @XmlElement
+    @XmlElement(name = "prv_txn")
+    public Integer getPrvTxn() {
+        return prvTxn;
+    }
+
     private Double sum;
 
-    @XmlElement
     private Integer result;
 
-    @XmlElement
     private String comment;
 }

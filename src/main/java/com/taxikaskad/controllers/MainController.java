@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.xml.bind.JAXBException;
+
+import static com.taxikaskad.Utils.toXml;
+
 @RestController
 public class MainController {
 
@@ -34,12 +38,13 @@ public class MainController {
     }
 
     @RequestMapping(value="/check", produces= MediaType.APPLICATION_XML_VALUE)
-    public QiwiResponse check() {
+    public String check() throws JAXBException {
         QiwiResponse response = new QiwiResponse();
         response.setResult(0);
         response.setOsmp_txn_id(134);
-//        qiwiResponse.getComment("123");
-//        qiwiResponse.getOsmp_txn_id(11);
-        return response;
+        response.setComment("123");
+        response.setSum(12.13);
+        response.setPrvTxn(12);
+        return toXml(response, true);
     }
 }

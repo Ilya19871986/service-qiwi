@@ -2,6 +2,10 @@ package com.taxikaskad;
 
 import javax.net.ssl.*;
 import javax.xml.bind.DatatypeConverter;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import java.io.StringWriter;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -10,6 +14,7 @@ import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 
 public class Utils {
+
     public static String Md5(String s)  {
         MessageDigest md = null;
         try {
@@ -52,5 +57,25 @@ public class Utils {
             return true;
         };
         HttpsURLConnection.setDefaultHostnameVerifier(hv);
+    }
+
+    /**
+     * Объект в XML
+     *
+     * @param object - объект
+     * @param pretty - true - форматированный XML, false - нет
+     * @param <T>    - тип объекта
+     * @return - строка XML
+     * @throws JAXBException - вызывается если неполадки с маршализацией
+     */
+    public static <T> String toXml(T object, boolean pretty) throws JAXBException {
+        final JAXBContext jaxbContext = JAXBContext.newInstance(object.getClass());
+        final Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+        jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, pretty);
+        final StringWriter sw = new StringWriter();
+
+        jaxbMarshaller.marshal(object, sw);
+
+        return sw.toString();
     }
 }
