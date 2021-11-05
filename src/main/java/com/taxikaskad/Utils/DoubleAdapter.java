@@ -1,4 +1,4 @@
-package com.taxikaskad;
+package com.taxikaskad.Utils;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 

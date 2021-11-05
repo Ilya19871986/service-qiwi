@@ -11,8 +11,8 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import static com.taxikaskad.Utils.Md5;
-import static com.taxikaskad.Utils.doTrustToCertificates;
+import static com.taxikaskad.Utils.MainUtils.Md5;
+import static com.taxikaskad.Utils.MainUtils.doTrustToCertificates;
 
 @Service
 @Slf4j

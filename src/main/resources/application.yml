@@ -11,3 +11,6 @@ baseUrl:
   checkDriverByIdUrl: /common_api/1.0/get_driver_info
   createDriverOperationUrl: /common_api/1.0/create_driver_operation
 commission: 5
+qiwi:
+  user: qiwi-user
+  password: F6BQ6ZS%

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.xml.bind.JAXBException;
 
-import static com.taxikaskad.Utils.toXml;
+import static com.taxikaskad.Utils.MainUtils.toXml;
 
 @RestController
 @Slf4j

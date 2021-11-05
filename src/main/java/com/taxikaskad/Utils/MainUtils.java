@@ -1,4 +1,4 @@
-package com.taxikaskad;
+package com.taxikaskad.Utils;
 
 import javax.net.ssl.*;
 import javax.xml.bind.DatatypeConverter;
@@ -13,7 +13,7 @@ import java.security.Security;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 
-public class Utils {
+public class MainUtils {
 
     public static String Md5(String s)  {
         MessageDigest md = null;

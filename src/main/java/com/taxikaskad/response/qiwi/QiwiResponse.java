@@ -1,6 +1,6 @@
 package com.taxikaskad.response.qiwi;
 
-import com.taxikaskad.DoubleAdapter;
+import com.taxikaskad.Utils.DoubleAdapter;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
