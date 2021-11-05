@@ -1,18 +1,15 @@
 package com.taxikaskad.service.Impl;
 
-import com.taxikaskad.response.BaseResponse;
-import com.taxikaskad.response.TmDriverDataResponse;
+import com.taxikaskad.request.tm.TmOperationRequest;
+import com.taxikaskad.response.tm.TmBaseResponse;
+import com.taxikaskad.response.tm.TmDriverDataResponse;
+import com.taxikaskad.response.tm.TmPayResponse;
 import com.taxikaskad.service.TmApiService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.logging.Logger;
 
 import static com.taxikaskad.Utils.Md5;
 import static com.taxikaskad.Utils.doTrustToCertificates;
@@ -30,6 +27,9 @@ public class TmApiServiceImpl implements TmApiService {
     @Value("${baseUrl.checkDriverByIdUrl}")
     private String checkDriverByIdUrl;
 
+    @Value("${baseUrl.createDriverOperationUrl}")
+    private String createDriverOperationUrl;
+
     static  {
         try {
             doTrustToCertificates();
@@ -39,12 +39,12 @@ public class TmApiServiceImpl implements TmApiService {
     }
 
     @Override
-    public ResponseEntity<BaseResponse> ping() {
+    public ResponseEntity<TmBaseResponse> ping() {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         HttpEntity entity = new HttpEntity(headers);
-        ResponseEntity<BaseResponse> response = restTemplate.exchange(
-                serverUrl + pingUrl, HttpMethod.GET, entity, BaseResponse.class);
+        ResponseEntity<TmBaseResponse> response = restTemplate.exchange(
+                serverUrl + pingUrl, HttpMethod.GET, entity, TmBaseResponse.class);
         return response;
     }
 
@@ -58,6 +58,23 @@ public class TmApiServiceImpl implements TmApiService {
         HttpEntity entity = new HttpEntity(headers);
         ResponseEntity<TmDriverDataResponse> response = restTemplate.exchange(
                 serverUrl + checkDriverByIdUrl + params, HttpMethod.GET, entity, TmDriverDataResponse.class);
+        return response;
+    }
+
+    @Override
+    public ResponseEntity<TmPayResponse> createDriverOperation(TmOperationRequest tmOperationRequest) {
+        RestTemplate restTemplate = new RestTemplate();
+        String signature = Md5(tmOperationRequest.toString() + "openapi221");
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setContentLength(tmOperationRequest.toString().length());
+        headers.set("Signature", signature);
+        HttpEntity entity = new HttpEntity(tmOperationRequest.toString(), headers);
+        ResponseEntity<TmPayResponse> response = restTemplate.exchange(
+                serverUrl + createDriverOperationUrl,
+                HttpMethod.POST,
+                entity,
+                TmPayResponse.class);
         return response;
     }
 }

@@ -1,6 +1,13 @@
 server:
   port: 22460
+logging:
+  level:
+    com.taxikaskad: DEBUG
+  file:
+    name: logfile.log
 baseUrl:
   serverUrl: https://10.0.0.1:8089
   pingUrl: /common_api/1.0/ping
   checkDriverByIdUrl: /common_api/1.0/get_driver_info
+  createDriverOperationUrl: /common_api/1.0/create_driver_operation
+commission: 5

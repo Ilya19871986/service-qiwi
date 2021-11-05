@@ -10,8 +10,9 @@
 	</parent>
 	<groupId>kaskad.taxi</groupId>
 	<artifactId>service-qiwi</artifactId>
+	<version>0.0.1</version>
 	<name>com.taxikaskad.service-qiwi</name>
-	<description>com.taxikaskad for qiwi</description>
+	<description>service qiwi</description>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>

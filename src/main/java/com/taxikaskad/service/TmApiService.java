@@ -1,12 +1,16 @@
 package com.taxikaskad.service;
 
-import com.taxikaskad.response.BaseResponse;
-import com.taxikaskad.response.TmDriverDataResponse;
+import com.taxikaskad.request.tm.TmOperationRequest;
+import com.taxikaskad.response.tm.TmBaseResponse;
+import com.taxikaskad.response.tm.TmDriverDataResponse;
+import com.taxikaskad.response.tm.TmPayResponse;
 import org.springframework.http.ResponseEntity;
 
 public interface TmApiService {
 
-    ResponseEntity<BaseResponse> ping();
+    ResponseEntity<TmBaseResponse> ping();
 
     ResponseEntity<TmDriverDataResponse> checkDriverById(Integer driverId);
+
+    ResponseEntity<TmPayResponse> createDriverOperation(TmOperationRequest tmOperationRequest);
 }
