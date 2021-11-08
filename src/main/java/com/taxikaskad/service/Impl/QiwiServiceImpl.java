@@ -1,5 +1,6 @@
 package com.taxikaskad.service.Impl;
 
+import com.taxikaskad.controllers.QiwiController;
 import com.taxikaskad.request.qiwi.QiwiOperationRequest;
 import com.taxikaskad.request.tm.TmOperationRequest;
 import com.taxikaskad.request.tm.TmOperationType;
@@ -11,6 +12,8 @@ import com.taxikaskad.service.FlkService;
 import com.taxikaskad.service.QiwiService;
 import com.taxikaskad.service.TmApiService;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +24,8 @@ import static com.taxikaskad.Utils.MainUtils.toXml;
 @Service
 @Slf4j
 public class QiwiServiceImpl implements QiwiService {
+
+    Logger logger = LoggerFactory.getLogger(QiwiServiceImpl.class);
 
     @Autowired
     TmApiService tmApiService;
@@ -49,7 +54,7 @@ public class QiwiServiceImpl implements QiwiService {
             return toXml(response, true);
 
         } catch (Exception ex) {
-            log.error("checkOperation: " + ex.getMessage());
+            logger.error(ex.getMessage());
             return QiwiResult.UNKNOWN_ERROR.toString();
         }
     }
@@ -89,7 +94,7 @@ public class QiwiServiceImpl implements QiwiService {
             return toXml(response, true);
 
         } catch (Exception ex) {
-            log.error("checkOperation: " + ex.getMessage());
+            logger.error(ex.getMessage());
             return QiwiResult.UNKNOWN_ERROR.toString();
         }
     }
@@ -97,7 +102,6 @@ public class QiwiServiceImpl implements QiwiService {
     @Override
     public String processingQiwiOperationRequest(QiwiOperationRequest request) {
         switch (request.getCommand()) {
-
             case pay: {
                 return payOperation(request);
             }
