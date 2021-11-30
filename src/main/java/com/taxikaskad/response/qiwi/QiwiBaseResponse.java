@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.*;
 public class QiwiBaseResponse {
 
     @XmlElement(name = "osmp_txn_id")
-    private Integer osmpTxnId;
+    private String osmpTxnId;
 
     @XmlElement
     private Integer result;

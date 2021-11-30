@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 public class QiwiResponse extends QiwiBaseResponse{
 
     @XmlElement(name = "prv_txn")
-    private Integer prvTxn;
+    private String prvTxn;
 
     @XmlElement
     @XmlJavaTypeAdapter(DoubleAdapter.class)

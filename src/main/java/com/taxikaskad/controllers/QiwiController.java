@@ -22,7 +22,7 @@ public class QiwiController {
 
     @GetMapping(value = "/operation", produces = MediaType.APPLICATION_XML_VALUE)
     public String qiwiOperation(@RequestParam(value = "command", required = true) QiwiOperationType command,
-                                @RequestParam(value = "txn_id", required = true) Integer txnId,
+                                @RequestParam(value = "txn_id", required = true) String txnId,
                                 @RequestParam(value = "txn_date", required = false) String txnDate,
                                 @RequestParam(value = "account", required = true) Integer account,
                                 @RequestParam(value = "sum", required = true) Double sum) {

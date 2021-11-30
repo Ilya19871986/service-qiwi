@@ -12,7 +12,7 @@ public class QiwiOperationRequest {
 
     private QiwiOperationType command;
 
-    private Integer txnId;
+    private String txnId;
 
     private String txnDate;
 

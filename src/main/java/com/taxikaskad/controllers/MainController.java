@@ -47,10 +47,10 @@ public class MainController {
     public String check() throws JAXBException {
         QiwiResponse response = new QiwiResponse();
         response.setResult(0);
-        response.setOsmpTxnId(1);
+        response.setOsmpTxnId("1");
         response.setComment(null);
         response.setSum(12.13);
-        response.setPrvTxn(12);
+        response.setPrvTxn("12");
         return toXml(response, true);
     }
 

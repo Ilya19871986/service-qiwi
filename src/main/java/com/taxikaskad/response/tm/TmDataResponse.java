@@ -7,5 +7,5 @@ import lombok.Data;
 public class TmDataResponse {
 
     @JsonAlias("oper_id")
-    Integer operId;
+    String operId;
 }

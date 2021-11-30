@@ -86,7 +86,7 @@ public class QiwiServiceImpl implements QiwiService {
                         .setComment(checkResult);
             } else {
                 response
-                        .setPrvTxn(0)
+                        .setPrvTxn("0")
                         .setResult(checkResult.getResult())
                         .setComment(checkResult);
             }
