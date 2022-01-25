@@ -2,7 +2,7 @@ package com.taxikaskad.controllers;
 
 import com.taxikaskad.request.tm.TmOperationRequest;
 import com.taxikaskad.response.tm.TmBaseResponse;
-import com.taxikaskad.response.qiwi.QiwiResponse;
+import com.taxikaskad.response.QiwiResponse;
 import com.taxikaskad.response.tm.TmDriverDataResponse;
 import com.taxikaskad.response.tm.TmPayResponse;
 import com.taxikaskad.service.TmApiService;

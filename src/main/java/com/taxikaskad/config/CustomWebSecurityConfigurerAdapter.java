@@ -18,21 +18,32 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
 
     @Value("${qiwi.user}")
-    private String user;
+    private String userQiwi;
 
     @Value("${qiwi.password}")
-    private String password;
+    private String passwordQiwi;
+
+    @Value("${sber.user}")
+    private String userSber;
+
+    @Value("${sber.password}")
+    private String passwordSber;
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
-                .withUser(user).password(passwordEncoder().encode(password))
-                .authorities("ROLE_QIWI_USER");
+                .withUser(userQiwi).password(passwordEncoder().encode(passwordQiwi))
+                .authorities("ROLE_QIWI_USER")
+                .and()
+                .withUser(userSber).password(passwordEncoder().encode(passwordSber))
+                .authorities("ROLE_SBER_USER");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
+                .antMatchers("/sber-service/**").hasRole("SBER_USER")
+                .antMatchers("/qiwi-service/**").hasRole("QIWI_USER")
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic();

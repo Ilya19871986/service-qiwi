@@ -1,4 +1,4 @@
-package com.taxikaskad.response.qiwi;
+package com.taxikaskad.response;
 
 import com.taxikaskad.Utils.DoubleAdapter;
 import lombok.Data;

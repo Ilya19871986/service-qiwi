@@ -14,3 +14,6 @@ commission: 5
 qiwi:
   user: qiwi-user
   password: F6BQ6ZS%
+sber:
+  user: sber-user
+  password: FJFIKSdZS%

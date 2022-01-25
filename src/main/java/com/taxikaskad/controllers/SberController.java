@@ -8,20 +8,23 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("qiwi-service/v1")
+@RequestMapping("sber-service/v1")
 @Slf4j
-public class QiwiController {
+public class SberController {
 
-    Logger logger = LoggerFactory.getLogger(QiwiController.class);
+    Logger logger = LoggerFactory.getLogger(SberController.class);
 
     @Autowired
     OperationService operationService;
 
     @GetMapping(value = "/operation", produces = MediaType.APPLICATION_XML_VALUE)
-    public String qiwiOperation(@RequestParam(value = "command", required = true) OperationType command,
+    public String sberOperation(@RequestParam(value = "command", required = true) OperationType command,
                                 @RequestParam(value = "txn_id", required = true) String txnId,
                                 @RequestParam(value = "txn_date", required = false) String txnDate,
                                 @RequestParam(value = "account", required = true) Integer account,
@@ -37,7 +40,7 @@ public class QiwiController {
 
         logger.debug(request.toString());
 
-        String response = operationService.processingQiwiOperationRequest(request);
+        String response = operationService.processingSberOperationRequest(request);
 
         logger.debug(response);
 
